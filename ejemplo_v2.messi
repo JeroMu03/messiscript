@@ -1,0 +1,9 @@
+// Ejemplo extendido, pensado para la entrega de Compiladores
+INICIAR CROACIA_2022
+VAR PASOS = 2
+REPETIR 2 {
+    MOVER DERECHA PASOS
+    MOVER ARRIBA 1
+}
+PASE ALVAREZ
+FIN

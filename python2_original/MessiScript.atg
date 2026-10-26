@@ -1,0 +1,50 @@
+/*
+  MESSISCRIPT - version 2 del lenguaje.
+  Fuente de verdad prevista para CocoRPy27 1.4.1 (Python 2).
+  INICIAR escenario { VAR identificador = numero } instruccion { instruccion } FIN
+  Incluye declaraciones simples y repeticiones anidadas.
+  Nota: las comprobaciones semanticas se realizan en Python despues del parser.
+  Generacion prevista: python2 /ruta/CocoRPy27-1.4.1/Coco.py MessiScript.atg
+*/
+COMPILER MessiScript
+
+CHARACTERS
+  letra  = 'A'..'Z'.
+  digito = '0'..'9'.
+
+TOKENS
+  identificador = letra { letra | digito | '_' }.
+  numero        = digito { digito }.
+
+COMMENTS FROM "//" TO '\n'
+COMMENTS FROM "/*" TO "*/" NESTED
+
+IGNORE ' ' + '\t' + '\r' + '\n'
+
+PRODUCTIONS
+  MessiScript =
+    "INICIAR" Escenario
+    { Declaracion }
+    Instruccion { Instruccion }
+    "FIN"
+  .
+
+  Escenario = identificador .
+
+  Declaracion = "VAR" identificador "=" numero .
+
+  Instruccion = Movimiento | Pase | Remate | Repeticion .
+
+  Movimiento = "MOVER" Direccion Cantidad .
+
+  Cantidad = numero | identificador .
+
+  Direccion = "ARRIBA" | "ABAJO" | "IZQUIERDA" | "DERECHA" .
+
+  Pase = "PASE" Jugador .
+  Jugador = identificador .
+
+  Remate = "REMATAR" .
+
+  Repeticion = "REPETIR" Cantidad "{" Instruccion { Instruccion } "}" .
+END MessiScript.

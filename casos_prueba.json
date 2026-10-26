@@ -1,0 +1,167 @@
+[
+  [
+    "Ejemplo original",
+    "INICIAR CROACIA_2022\nMOVER DERECHA 2\nMOVER ARRIBA 1\nPASE ALVAREZ\nFIN",
+    true
+  ],
+  [
+    "Todas las instrucciones",
+    "INICIAR FINAL_2022 MOVER ARRIBA 1 MOVER ABAJO 2 MOVER IZQUIERDA 3 MOVER DERECHA 4 PASE DI_MARIA REMATAR FIN",
+    true
+  ],
+  [
+    "Remate sin parametros",
+    "INICIAR FINAL_2022 REMATAR FIN",
+    true
+  ],
+  [
+    "Comentarios",
+    "// comienzo\r\nINICIAR CROACIA_2022\t/* externo /* interno */ fin */ REMATAR FIN // final",
+    true
+  ],
+  [
+    "Variables y repeticiones",
+    "INICIAR CROACIA_2022 VAR PASOS = 2 REPETIR 2 { MOVER DERECHA PASOS MOVER ARRIBA 1 } PASE ALVAREZ FIN",
+    true
+  ],
+  [
+    "Repeticion anidada",
+    "INICIAR FINAL_2022 REPETIR 2 { REPETIR 2 { MOVER ARRIBA 1 } REMATAR } FIN",
+    true
+  ],
+  [
+    "Variable en repetir",
+    "INICIAR FINAL_2022 VAR VECES = 2 REPETIR VECES { REMATAR } FIN",
+    true
+  ],
+  [
+    "Escenario desconocido",
+    "INICIAR INVENTADO PASE DESCONOCIDO FIN",
+    false
+  ],
+  [
+    "Jugador ausente",
+    "INICIAR CROACIA_2022 PASE DESCONOCIDO FIN",
+    false
+  ],
+  [
+    "Pase a uno mismo",
+    "INICIAR FINAL_2022 PASE MESSI FIN",
+    false
+  ],
+  [
+    "Cero pasos",
+    "INICIAR CROACIA_2022 MOVER DERECHA 0 FIN",
+    false
+  ],
+  [
+    "Cero repeticiones",
+    "INICIAR CROACIA_2022 REPETIR 0 { REMATAR } FIN",
+    false
+  ],
+  [
+    "Pasos demasiados",
+    "INICIAR FINAL_2022 MOVER ARRIBA 21 FIN",
+    false
+  ],
+  [
+    "Repeticiones demasiadas",
+    "INICIAR FINAL_2022 REPETIR 11 { REMATAR } FIN",
+    false
+  ],
+  [
+    "Variable no declarada",
+    "INICIAR FINAL_2022 MOVER ARRIBA PASOS FIN",
+    false
+  ],
+  [
+    "Variable repetida",
+    "INICIAR FINAL_2022 VAR X = 2 VAR X = 3 REMATAR FIN",
+    false
+  ],
+  [
+    "Falta INICIAR",
+    "CROACIA_2022 REMATAR FIN",
+    false
+  ],
+  [
+    "Falta escenario",
+    "INICIAR REMATAR FIN",
+    false
+  ],
+  [
+    "Faltan acciones",
+    "INICIAR CROACIA_2022 FIN",
+    false
+  ],
+  [
+    "Direccion invalida",
+    "INICIAR CROACIA_2022 MOVER DIAGONAL 2 FIN",
+    false
+  ],
+  [
+    "Falta numero",
+    "INICIAR CROACIA_2022 MOVER ARRIBA FIN",
+    false
+  ],
+  [
+    "Numero decimal",
+    "INICIAR CROACIA_2022 MOVER ARRIBA 1.5 FIN",
+    false
+  ],
+  [
+    "Numero negativo",
+    "INICIAR CROACIA_2022 MOVER ARRIBA -2 FIN",
+    false
+  ],
+  [
+    "Falta destinatario",
+    "INICIAR CROACIA_2022 PASE FIN",
+    false
+  ],
+  [
+    "Falta FIN",
+    "INICIAR CROACIA_2022 REMATAR",
+    false
+  ],
+  [
+    "Texto posterior a FIN",
+    "INICIAR CROACIA_2022 REMATAR FIN REMATAR",
+    false
+  ],
+  [
+    "Minusculas",
+    "iniciar CROACIA_2022 rematar fin",
+    false
+  ],
+  [
+    "INICIAR repetido",
+    "INICIAR CROACIA_2022 REMATAR INICIAR FINAL_2022 FIN",
+    false
+  ],
+  [
+    "Falta cierre de bloque",
+    "INICIAR FINAL_2022 REPETIR 2 { REMATAR FIN",
+    false
+  ],
+  [
+    "Repetir vacio",
+    "INICIAR FINAL_2022 REPETIR 2 { } FIN",
+    false
+  ],
+  [
+    "VAR despues de instruccion",
+    "INICIAR FINAL_2022 REMATAR VAR PASOS = 2 FIN",
+    false
+  ],
+  [
+    "Falta = en VAR",
+    "INICIAR FINAL_2022 VAR PASOS 2 REMATAR FIN",
+    false
+  ],
+  [
+    "Variable sin valor",
+    "INICIAR FINAL_2022 VAR PASOS = REMATAR FIN",
+    false
+  ]
+]

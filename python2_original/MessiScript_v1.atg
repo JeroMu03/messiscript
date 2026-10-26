@@ -1,0 +1,73 @@
+/*
+  MESSISCRIPT - Gramatica inicial para Coco/R para Python 2.7.
+  Basada en la propuesta de Presentacion Avances 13/10.
+
+  Reglas de esta version:
+  - Un programa selecciona un escenario e incluye al menos una accion.
+  - Palabras reservadas y nombres en MAYUSCULAS, sin tildes.
+  - Los nombres comienzan con A-Z y pueden continuar con A-Z, 0-9 o _.
+  - MOVER recibe una direccion y un numero entero sin signo.
+  - PASE recibe el nombre de un jugador.
+  - REMATAR no recibe parametros en esta version inicial.
+  - No se usan punto y coma ni parentesis en los programas.
+  - Espacios, tabulaciones y saltos de linea separan los tokens.
+  - Se admiten comentarios de linea y de bloque.
+
+  Esta gramatica define el analisis lexico y sintactico.
+  Aun deben implementarse en Java las validaciones semanticas:
+  escenario existente, jugador disponible y cantidad de pasos mayor que 0.
+  Las colisiones, la posesion y el logro del objetivo dependen del simulador.
+  No se generan todavia acciones ejecutables ni JSON.
+
+  Ejemplo de programa:
+    INICIAR CROACIA_2022
+    MOVER DERECHA 2
+    MOVER ARRIBA 1
+    PASE ALVAREZ
+    FIN
+
+  Generacion con CocoRPy27 1.4.1 desde esta carpeta:
+    python2 /ruta/CocoRPy27-1.4.1/Coco.py MessiScript.atg
+
+  Coco/R comprueba por defecto el fin de archivo despues de la
+  produccion inicial: no se admite codigo adicional despues de FIN.
+*/
+
+COMPILER MessiScript
+
+CHARACTERS
+  letra  = 'A'..'Z'.
+  digito = '0'..'9'.
+
+TOKENS
+  identificador = letra { letra | digito | '_' }.
+  numero        = digito { digito }.
+
+COMMENTS FROM "//" TO '\n'
+COMMENTS FROM "/*" TO "*/" NESTED
+
+IGNORE ' ' + '\t' + '\r' + '\n'
+
+PRODUCTIONS
+
+  MessiScript =
+    "INICIAR" Escenario
+    Instruccion { Instruccion }
+    "FIN"
+  .
+
+  Escenario = identificador .
+
+  Instruccion = Movimiento | Pase | Remate .
+
+  Movimiento = "MOVER" Direccion numero .
+
+  Direccion = "ARRIBA" | "ABAJO" | "IZQUIERDA" | "DERECHA" .
+
+  Pase = "PASE" Jugador .
+
+  Jugador = identificador .
+
+  Remate = "REMATAR" .
+
+END MessiScript.
