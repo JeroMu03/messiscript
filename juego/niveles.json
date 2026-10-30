@@ -1,0 +1,199 @@
+[
+  {
+    "id": "MEXICO_2022",
+    "nombre": "México 2022",
+    "subtitulo": "Fase de Grupos · Mundial 2022",
+    "escenario": "MEXICO_2022",
+    "descripcion": "Partido cerrado en Lusail. Messi recibe fuera del área y se perfila hacia la derecha para sacar un zurdazo rasante junto al palo.",
+    "codigo_inicial": "INICIAR MEXICO_2022\nMOVER DERECHA 4\nREMATAR\nFIN",
+    "pista": "Avanzá 4 celdas a la derecha para entrar en zona de remate y ejecutá REMATAR.",
+    "cancha": {"columnas": 30, "filas": 20},
+    "jugadores": ["MESSI", "DI_MARIA", "DE_PAUL", "LAUTARO", "ENZO_FERNANDEZ"],
+    "nombres": {
+      "MESSI": "Messi",
+      "DI_MARIA": "Di María",
+      "DE_PAUL": "De Paul",
+      "LAUTARO": "Lautaro",
+      "ENZO_FERNANDEZ": "Enzo"
+    },
+    "inicio": {
+      "MESSI": [18, 10],
+      "DI_MARIA": [21, 5],
+      "LAUTARO": [25, 8],
+      "DE_PAUL": [15, 13],
+      "ENZO_FERNANDEZ": [13, 10]
+    },
+    "rivales": {
+      "OCHOA": [28, 12],
+      "MONTES": [25, 12],
+      "MORENO": [25, 6],
+      "HERRERA": [20, 12],
+      "GUARDADO": [19, 8]
+    },
+    "arquero": "OCHOA",
+    "pelota": "MESSI",
+    "arco": {"x": 29, "y": 8, "alto": 4},
+    "objetivo": {
+      "tipo": "gol",
+      "rematador": "MESSI",
+      "max_acciones": 8
+    },
+    "trofeo": {
+      "id": "boleto_octavos_2022",
+      "nombre": "Boleto a octavos",
+      "descripcion": "Golazo de Messi desde afuera del área ante México."
+    }
+  },
+  {
+    "id": "CROACIA_2022",
+    "nombre": "Croacia 2022",
+    "subtitulo": "Semifinal · Mundial 2022",
+    "escenario": "CROACIA_2022",
+    "descripcion": "Messi arranca por la derecha marcado por Gvardiol, desborda en diagonal hacia el área y descarga el pase de gol para Julián Álvarez.",
+    "codigo_inicial": "INICIAR CROACIA_2022\nVAR PASOS = 2\nREPETIR 2 {\n    MOVER DERECHA PASOS\n    MOVER ARRIBA 1\n}\nPASE ALVAREZ\nFIN",
+    "pista": "Usá VAR y REPETIR para avanzar en diagonal esquivando a Gvardiol y asistí a ALVAREZ.",
+    "cancha": {"columnas": 30, "filas": 20},
+    "jugadores": ["MESSI", "ALVAREZ", "DE_PAUL", "MAC_ALLISTER", "ENZO_FERNANDEZ", "OTAMENDI"],
+    "nombres": {
+      "MESSI": "Messi",
+      "ALVAREZ": "Álvarez",
+      "DE_PAUL": "De Paul",
+      "MAC_ALLISTER": "Mac Allister",
+      "ENZO_FERNANDEZ": "Enzo",
+      "OTAMENDI": "Otamendi"
+    },
+    "inicio": {
+      "MESSI": [16, 12],
+      "ALVAREZ": [25, 10],
+      "ENZO_FERNANDEZ": [15, 9],
+      "MAC_ALLISTER": [17, 7],
+      "DE_PAUL": [14, 14],
+      "OTAMENDI": [8, 10]
+    },
+    "rivales": {
+      "LIVAKOVIC": [28, 10],
+      "GVARDIOL": [19, 12],
+      "LOVREN": [24, 12],
+      "MODRIC": [18, 8],
+      "KOVACIC": [22, 7]
+    },
+    "arquero": "LIVAKOVIC",
+    "pelota": "MESSI",
+    "arco": {"x": 29, "y": 8, "alto": 4},
+    "objetivo": {
+      "tipo": "asistencia",
+      "asistente": "MESSI",
+      "receptor": "ALVAREZ",
+      "max_acciones": 10
+    },
+    "trofeo": {
+      "id": "finalista_mundo_2022",
+      "nombre": "Finalista del mundo 2022",
+      "descripcion": "Jugada histórica y asistencia a Julián Álvarez ante Croacia."
+    }
+  },
+  {
+    "id": "FINAL_2022",
+    "nombre": "Final 2022",
+    "subtitulo": "Final · Mundial 2022",
+    "escenario": "FINAL_2022",
+    "descripcion": "Contraataque perfecto ante Francia. Messi conduce en el medio, abre para Di María por izquierda y Fideo define frente a Lloris.",
+    "codigo_inicial": "INICIAR FINAL_2022\nMOVER DERECHA 2\nPASE DI_MARIA\nREMATAR\nFIN",
+    "pista": "Adelantate 2 celdas a la derecha, pasale la pelota a DI_MARIA y rematá al arco.",
+    "cancha": {"columnas": 30, "filas": 20},
+    "jugadores": ["MESSI", "DI_MARIA", "ALVAREZ", "DE_PAUL", "MAC_ALLISTER", "ENZO_FERNANDEZ", "OTAMENDI"],
+    "nombres": {
+      "MESSI": "Messi",
+      "DI_MARIA": "Di María",
+      "ALVAREZ": "Álvarez",
+      "DE_PAUL": "De Paul",
+      "MAC_ALLISTER": "Mac Allister",
+      "ENZO_FERNANDEZ": "Enzo",
+      "OTAMENDI": "Otamendi"
+    },
+    "inicio": {
+      "MESSI": [18, 12],
+      "DI_MARIA": [24, 7],
+      "ALVAREZ": [22, 10],
+      "MAC_ALLISTER": [19, 9],
+      "ENZO_FERNANDEZ": [14, 10],
+      "DE_PAUL": [16, 14],
+      "OTAMENDI": [8, 10]
+    },
+    "rivales": {
+      "LLORIS": [28, 11],
+      "KOUNDE": [21, 12],
+      "VARANE": [25, 11],
+      "UPAMECANO": [25, 13],
+      "TCHOUAMENI": [17, 9]
+    },
+    "arquero": "LLORIS",
+    "pelota": "MESSI",
+    "arco": {"x": 29, "y": 8, "alto": 4},
+    "objetivo": {
+      "tipo": "gol_con_asistencia",
+      "asistente": "MESSI",
+      "rematador": "DI_MARIA",
+      "max_acciones": 8
+    },
+    "trofeo": {
+      "id": "copa_del_mundo_2022",
+      "nombre": "Copa del Mundo 2022",
+      "descripcion": "Contraataque inolvidable y definición de Di María en la final."
+    }
+  },
+  {
+    "id": "INGLATERRA_2026",
+    "nombre": "Inglaterra 2026",
+    "subtitulo": "Semifinal · Mundial 2026",
+    "escenario": "INGLATERRA_2026",
+    "descripcion": "Argentina pierde 1-0 hasta el minuto 85. Messi empata con un pase a Enzo y, en el 90+2, cuelga un centro para que Lautaro cabecee el gol de la clasificación.",
+    "codigo_inicial": "INICIAR INGLATERRA_2026\nVAR PASOS = 2\nMOVER DERECHA PASOS\nMOVER ARRIBA 1\nPASE LAUTARO\nREMATAR\nFIN",
+    "pista": "Llegá a la banda derecha, buscá el espacio y tirá el centro al área. Después del pase, el control pasa a Lautaro.",
+    "cancha": {"columnas": 30, "filas": 20},
+    "jugadores": ["MESSI", "ALVAREZ", "ENZO_FERNANDEZ", "MAC_ALLISTER", "DE_PAUL", "LAUTARO", "OTAMENDI", "ROMERO"],
+    "nombres": {
+      "MESSI": "Messi",
+      "ALVAREZ": "Álvarez",
+      "ENZO_FERNANDEZ": "Enzo",
+      "MAC_ALLISTER": "Mac Allister",
+      "DE_PAUL": "De Paul",
+      "LAUTARO": "Lautaro",
+      "OTAMENDI": "Otamendi",
+      "ROMERO": "Romero"
+    },
+    "inicio": {
+      "MESSI": [22, 6],
+      "LAUTARO": [27, 10],
+      "ALVAREZ": [24, 14],
+      "ENZO_FERNANDEZ": [18, 10],
+      "MAC_ALLISTER": [16, 7],
+      "DE_PAUL": [14, 12],
+      "OTAMENDI": [8, 10],
+      "ROMERO": [7, 8]
+    },
+    "rivales": {
+      "PICKFORD": [28, 11],
+      "STONES": [25, 9],
+      "GUEHI": [25, 12],
+      "RICE": [20, 10],
+      "BELLINGHAM": [18, 14],
+      "SAKA": [12, 5],
+      "GORDON": [11, 15]
+    },
+    "arquero": "PICKFORD",
+    "pelota": "MESSI",
+    "arco": {"x": 29, "y": 8, "alto": 4},
+    "objetivo": {
+      "tipo": "gol_con_asistencia",
+      "asistente": "MESSI",
+      "rematador": "LAUTARO",
+      "max_acciones": 8
+    },
+    "trofeo": {
+      "id": "pase_final_2026",
+      "nombre": "Pase a la final 2026",
+      "descripcion": "Asistencia de Messi a Lautaro en el 90+2."
+    }
+  }
+]

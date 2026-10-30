@@ -1,0 +1,100 @@
+QMainWindow, QWidget {
+    background-color: #0B1220;
+    color: #E5E7EB;
+    font-family: "Segoe UI", "Inter", sans-serif;
+    font-size: 10pt;
+}
+QToolBar {
+    background-color: #111827;
+    border-bottom: 1px solid #334155;
+    spacing: 8px;
+    padding: 6px 12px;
+}
+QPushButton {
+    background-color: #1F2937;
+    color: #E5E7EB;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    padding: 6px 14px;
+    min-height: 24px;
+    font-weight: 600;
+}
+QPushButton:hover {
+    background-color: #334155;
+    border-color: #75AADB;
+}
+QPushButton#btnPrimario {
+    background-color: #75AADB;
+    color: #0B1220;
+    border: none;
+}
+QPushButton#btnPrimario:hover {
+    background-color: #38BDF8;
+}
+QPushButton#btnPeligro {
+    background-color: #7F1D1D;
+    color: #FCA5A5;
+    border: 1px solid #EF4444;
+}
+QFrame#tarjeta {
+    background-color: #111827;
+    border: 1px solid #334155;
+    border-radius: 8px;
+}
+QPlainTextEdit {
+    background-color: #111827;
+    color: #E5E7EB;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    font-family: "Cascadia Code", "Consolas", monospace;
+    font-size: 11pt;
+    selection-background-color: #1D4ED8;
+}
+QTabWidget::pane {
+    border: 1px solid #334155;
+    background-color: #111827;
+    border-radius: 6px;
+}
+QTabBar::tab {
+    background-color: #111827;
+    color: #9CA3AF;
+    padding: 8px 16px;
+    border-bottom: 2px solid transparent;
+    font-weight: 600;
+}
+QTabBar::tab:selected {
+    color: #E5E7EB;
+    background-color: #1F2937;
+    border-bottom: 2px solid #75AADB;
+}
+QTableWidget {
+    background-color: #111827;
+    color: #E5E7EB;
+    gridline-color: #1F2937;
+    border: none;
+}
+QHeaderView::section {
+    background-color: #1F2937;
+    color: #9CA3AF;
+    padding: 6px;
+    border: none;
+    border-bottom: 1px solid #334155;
+    font-weight: 600;
+}
+QProgressBar {
+    background-color: #1F2937;
+    border: 1px solid #334155;
+    border-radius: 5px;
+    text-align: center;
+    color: #E5E7EB;
+    font-weight: bold;
+}
+QProgressBar::chunk {
+    background-color: #22C55E;
+    border-radius: 4px;
+}
+QStatusBar {
+    background-color: #111827;
+    color: #9CA3AF;
+    border-top: 1px solid #334155;
+}

@@ -1,0 +1,1 @@
+"""Paquete de interfaz gráfica PySide6 para MessiScript"""
