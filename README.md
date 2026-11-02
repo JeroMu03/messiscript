@@ -39,11 +39,11 @@ python main.py
 
 ## Características de la GUI
 
-4 Niveles Históricos: Incluye México 2022, Croacia 2022, Final 2022 y una simulación de Inglaterra 2026.
-Editor de Código Integrado: Resaltado de sintaxis, numeración de líneas y subrayado de errores de compilación (click-to-line).
-Cancha 2D: Visualización cenital de los pases, movimientos de los jugadores, rivales y remates al arco.
-Paneles de Depuración: Tablas con los errores detectados, tabla de símbolos y acciones decodificadas.
-Sistema de Trofeos: Desbloqueo de logros que se guardan en tu progreso local.
+- 4 Niveles Históricos: Incluye México 2022, Croacia 2022, Final 2022 y una simulación de Inglaterra 2026.
+- Editor de Código Integrado: Resaltado de sintaxis, numeración de líneas y subrayado de errores de compilación (click-to-line).
+- Cancha 2D: Visualización cenital de los pases, movimientos de los jugadores, rivales y remates al arco.
+- Paneles de Depuración: Tablas con los errores detectados, tabla de símbolos y acciones decodificadas.
+- Sistema de Trofeos: Desbloqueo de logros que se guardan en tu progreso local.
 
 ---
 
@@ -99,9 +99,10 @@ El proyecto está diseñado de forma modular para respetar los principios del di
 ## Estado de Coco/R
 
 Para fines académicos, es importante destacar el flujo de generación:
-La versión v1 fue generada exitosamente con `CocoRPy27 1.4.1` bajo Python 2.7. Los archivos originales (`Scanner.py` y `Parser.py`) se conservan en la carpeta `python2_original/` como respaldo histórico.
-Los analizadores en la carpeta principal `messiscript/` fueron adaptados para Python 3 y funcionan con la gramática v2. Sin embargo, sus extensiones (para la construcción del AST y soporte de v2) son actualmente parches manuales.
-Pendiente para automatización total: Volver a ejecutar CocoRPy27 con `MessiScript.atg`, inyectar las acciones semánticas directamente en el archivo `.atg` y usar un script de transpilación automática a Python 3.
+- La versión v1 fue generada exitosamente con `CocoRPy27 1.4.1` bajo Python 2.7. Los archivos originales (`Scanner.py` y `Parser.py`) se conservan en la carpeta `python2_original/` como respaldo histórico.
+- Los analizadores en la carpeta principal `messiscript/` fueron adaptados para Python 3 y funcionan con la gramática v2. Sin embargo, sus extensiones (para la construcción del AST y soporte de v2) son actualmente parches manuales.
+- Pendiente para automatización total: Volver a ejecutar CocoRPy27 con `MessiScript.atg`, inyectar las acciones semánticas directamente en el archivo `.atg` y usar un script de transpilación automática a Python 3.
+
 > ⚠️ **No se utilizó ninguna librería externa** (como PLY o ANTLR) como sustituto; el motor subyacente sigue la lógica predictiva descendente originalmente generada por Coco/R.
 ## Pruebas Automáticas
 El proyecto cuenta con una robusta suite de tests que valida tanto el compilador como el motor del juego. Para ejecutarlos:
