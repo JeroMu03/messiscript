@@ -4,7 +4,7 @@ MessiScript es un Lenguaje de Dominio Específico (DSL). Permite programar, comp
 La versión 2 incluye nuevas estructuras de control (variables y repeticiones) y una interfaz gráfica interactiva (GUI) con un motor de juego en 2D el cual permite visualizar la ejecución del código paso a paso, corregir errores en tiempo real y desbloquear trofeos.
 
 ---
-🚀 Instalación y Uso de la Interfaz Gráfica
+Instalación y Uso de la Interfaz Gráfica
 La interfaz está construida con Python 3 y PySide6. Para correr el "Modo Carrera" con la cancha 2D, el editor integrado y los trofeos, se deben seguir los siguientes pasos:
 1. Preparar el entorno virtual
 Es recomendable usar un entorno virtual para instalar las dependencias de la interfaz.
