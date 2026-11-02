@@ -4,7 +4,6 @@
 
 La versión 2 incluye nuevas estructuras de control (variables y repeticiones) y una interfaz gráfica interactiva (GUI) con un motor de juego en 2D el cual permite visualizar la ejecución del código paso a paso, corregir errores en tiempo real y desbloquear trofeos.
 
----
 
 ## Instalación y Uso de la Interfaz Gráfica
 La interfaz está construida con Python 3 y PySide6. Para correr el "Modo Carrera" con la cancha 2D, el editor integrado y los trofeos, se deben seguir los siguientes pasos:
@@ -90,9 +89,9 @@ El lenguaje es case-sensitive. Todos los comandos deben ir en mayúsculas.
 ## Arquitectura y Separación de Responsabilidades
 
 El proyecto está diseñado de forma modular para respetar los principios del diseño de compiladores:
-`messiscript/` (El Compilador): Contiene el `Scanner`, `Parser` y la lógica de validación `semantica.py`. Es 100% independiente de la UI. Analiza el texto y devuelve un AST simplificado (lista de acciones).
-`juego/` (El Motor): Escrito en Python puro. Recibe las acciones del compilador y simula la física (colisiones, alcances, intersecciones de pases).
-`ui/` (La Interfaz): Construida en PySide6. Solo dibuja frames y captura eventos del usuario. No toma decisiones de reglas de juego ni de compilación.
+- `messiscript/` (El Compilador): Contiene el `Scanner`, `Parser` y la lógica de validación `semantica.py`. Es 100% independiente de la UI. Analiza el texto y devuelve un AST simplificado (lista de acciones).
+- `juego/` (El Motor): Escrito en Python puro. Recibe las acciones del compilador y simula la física (colisiones, alcances, intersecciones de pases).
+- `ui/` (La Interfaz): Construida en PySide6. Solo dibuja frames y captura eventos del usuario. No toma decisiones de reglas de juego ni de compilación.
 
 ---
 
