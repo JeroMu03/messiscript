@@ -4,7 +4,7 @@ MessiScript es un Lenguaje de Dominio Específico (DSL). Permite programar, comp
 La versión 2 incluye nuevas estructuras de control (variables y repeticiones) y una interfaz gráfica interactiva (GUI) con un motor de juego en 2D el cual permite visualizar la ejecución del código paso a paso, corregir errores en tiempo real y desbloquear trofeos.
 
 ---
-Instalación y Uso de la Interfaz Gráfica
+## Instalación y Uso de la Interfaz Gráfica
 La interfaz está construida con Python 3 y PySide6. Para correr el "Modo Carrera" con la cancha 2D, el editor integrado y los trofeos, se deben seguir los siguientes pasos:
 1. Preparar el entorno virtual
 Es recomendable usar un entorno virtual para instalar las dependencias de la interfaz.
@@ -26,7 +26,7 @@ pip install -r requirements-ui.txt
 ```powershell
 python main.py
 ```
-# Características de la GUI
+## Características de la GUI
 
 4 Niveles Históricos: Incluye México 2022, Croacia 2022, Final 2022 y una simulación de Inglaterra 2026.
 Editor de Código Integrado: Resaltado de sintaxis, numeración de líneas y subrayado de errores de compilación (click-to-line).
@@ -35,7 +35,8 @@ Paneles de Depuración: Tablas con los errores detectados, tabla de símbolos y 
 Sistema de Trofeos: Desbloqueo de logros que se guardan en tu progreso local.
 
 ---
-# Uso del Compilador (Modo CLI)
+## Uso del Compilador (Modo CLI)
+
 Si solo se quiere usar el analizador léxico/sintáctico por consola (ideal para pruebas rápidas o integración), se puede seguir usando el script original sin necesidad de instalar PySide6.
 ```powershell
 # Analizar un archivo con código MessiScript
@@ -56,7 +57,7 @@ print(resultado)
 ```
 > *Nota:* El motor de validación semántica rechaza pases a uno mismo, jugadores que no están en la cancha, o salir de los límites permitidos (máx. 20 pasos, 10 repeticiones, 300 acciones).
 ---
-# Sintaxis de MessiScript v2
+## Sintaxis de MessiScript v2
 El lenguaje es case-sensitive. Todos los comandos deben ir en mayúsculas.
 Instrucción / Mejora	Ejemplo de Uso	Descripción
 Estructura Base	`INICIAR ESCENARIO` ... `FIN`	Define el contexto/plantel y los límites del programa.
@@ -75,13 +76,13 @@ El proyecto está diseñado de forma modular para respetar los principios del di
 `ui/` (La Interfaz): Construida en PySide6. Solo dibuja frames y captura eventos del usuario. No toma decisiones de reglas de juego ni de compilación.
 
 ---
-# Estado de Coco/R
+## Estado de Coco/R
 Para fines académicos, es importante destacar el flujo de generación:
 La versión v1 fue generada exitosamente con `CocoRPy27 1.4.1` bajo Python 2.7. Los archivos originales (`Scanner.py` y `Parser.py`) se conservan en la carpeta `python2_original/` como respaldo histórico.
 Los analizadores en la carpeta principal `messiscript/` fueron adaptados para Python 3 y funcionan con la gramática v2. Sin embargo, sus extensiones (para la construcción del AST y soporte de v2) son actualmente parches manuales.
 Pendiente para automatización total: Volver a ejecutar CocoRPy27 con `MessiScript.atg`, inyectar las acciones semánticas directamente en el archivo `.atg` y usar un script de transpilación automática a Python 3.
 > ⚠️ **No se utilizó ninguna librería externa** (como PLY o ANTLR) como sustituto; el motor subyacente sigue la lógica predictiva descendente originalmente generada por Coco/R.
-# Pruebas Automáticas
+## Pruebas Automáticas
 El proyecto cuenta con una robusta suite de tests que valida tanto el compilador como el motor del juego. Para ejecutarlos:
 ```powershell
 # Pruebas del compilador (Coco/R)
