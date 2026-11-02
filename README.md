@@ -1,4 +1,4 @@
-# MessiScript v2 - Modo Carrera y Compilador
+# MessiScript v2
 
 MessiScript es un Lenguaje de Dominio Específico (DSL). Permite programar, compilar y simular jugadas históricas de Lionel Messi.
 La versión 2 incluye nuevas estructuras de control (variables y repeticiones) y una interfaz gráfica interactiva (GUI) con un motor de juego en 2D el cual permite visualizar la ejecución del código paso a paso, corregir errores en tiempo real y desbloquear trofeos.
