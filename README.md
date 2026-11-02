@@ -25,7 +25,7 @@ source .venv/bin/activate
 ### 2. Instalar dependencias
 
 ```powershell
-pip install -r requirements-ui.txt
+pip install -r requirements.txt
 ```
 
 ### 3. Ejecutar el juego
