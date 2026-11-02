@@ -2,6 +2,7 @@
 
 MessiScript es un Lenguaje de Dominio Específico (DSL). Permite programar, compilar y simular jugadas históricas de Lionel Messi.
 La versión 2 incluye nuevas estructuras de control (variables y repeticiones) y una interfaz gráfica interactiva (GUI) con un motor de juego en 2D el cual permite visualizar la ejecución del código paso a paso, corregir errores en tiempo real y desbloquear trofeos.
+
 ---
 🚀 Instalación y Uso de la Interfaz Gráfica
 La interfaz está construida con Python 3 y PySide6. Para correr el "Modo Carrera" con la cancha 2D, el editor integrado y los trofeos, se deben seguir los siguientes pasos:
@@ -32,6 +33,7 @@ Editor de Código Integrado: Resaltado de sintaxis, numeración de líneas y sub
 Cancha 2D: Visualización cenital de los pases, movimientos de los jugadores, rivales y remates al arco.
 Paneles de Depuración: Tablas con los errores detectados, tabla de símbolos y acciones decodificadas.
 Sistema de Trofeos: Desbloqueo de logros que se guardan en tu progreso local.
+
 ---
 # Uso del Compilador (Modo CLI)
 Si solo se quiere usar el analizador léxico/sintáctico por consola (ideal para pruebas rápidas o integración), se puede seguir usando el script original sin necesidad de instalar PySide6.
@@ -64,12 +66,14 @@ Bucle / Repetición	`REPETIR 3 { ... }`	Repite un bloque de instrucciones. Admit
 Pase	`PASE ALVAREZ`	Comprueba disponibilidad contextual en la tabla del escenario. El control pasa al receptor.
 Remate	`REMATAR`	Dispara al arco para finalizar la jugada.
 Comentarios	`// linea` o `/* bloque */`	Ignorados por el analizador léxico.
+
 ---
 # Arquitectura y Separación de Responsabilidades
 El proyecto está diseñado de forma modular para respetar los principios del diseño de compiladores:
 `messiscript/` (El Compilador): Contiene el `Scanner`, `Parser` y la lógica de validación `semantica.py`. Es 100% independiente de la UI. Analiza el texto y devuelve un AST simplificado (lista de acciones).
 `juego/` (El Motor): Escrito en Python puro. Recibe las acciones del compilador y simula la física (colisiones, alcances, intersecciones de pases).
 `ui/` (La Interfaz): Construida en PySide6. Solo dibuja frames y captura eventos del usuario. No toma decisiones de reglas de juego ni de compilación.
+
 ---
 # Estado de Coco/R
 Para fines académicos, es importante destacar el flujo de generación:
