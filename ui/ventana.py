@@ -6,7 +6,6 @@ from PySide6.QtWidgets import (
     QHBoxLayout,
     QLabel,
     QMainWindow,
-    QMessageBox,
     QPushButton,
     QSplitter,
     QStackedWidget,
@@ -22,6 +21,7 @@ from juego.niveles import cargar_niveles, construir_escenarios, obtener_nivel
 from juego.progreso import GestorProgreso
 from messiscript import analizar
 
+from . import audio_8bit
 from .ayuda import DialogoAyuda
 from .cancha import CanchaWidget
 from .editor import EditorWidget
@@ -142,11 +142,16 @@ class VentanaPrincipal(QMainWindow):
         self.btn_ejecutar.setObjectName("btnPrimario")
         self.btn_ejecutar.clicked.connect(self.ejecutar_jugada)
 
-        btn_restaurar = QPushButton("Restaurar ejemplo")
-        btn_restaurar.clicked.connect(self.restaurar_codigo_inicial)
+        self.btn_ayuda_nivel = QPushButton("❓ Ayuda / Entorno")
+        self.btn_ayuda_nivel.setToolTip("Ver jugadores, rivales y coordenadas del escenario actual")
+        self.btn_ayuda_nivel.clicked.connect(self.mostrar_ayuda)
+
+        btn_plantilla = QPushButton("Nueva plantilla")
+        btn_plantilla.clicked.connect(self.restaurar_plantilla)
 
         botones_ed.addWidget(self.btn_ejecutar)
-        botones_ed.addWidget(btn_restaurar)
+        botones_ed.addWidget(self.btn_ayuda_nivel)
+        botones_ed.addWidget(btn_plantilla)
         botones_ed.addStretch()
         v_ed.addLayout(botones_ed)
 
@@ -203,11 +208,18 @@ class VentanaPrincipal(QMainWindow):
         QShortcut(QKeySequence("Ctrl+2"), self, activated=lambda: self.stack.setCurrentIndex(2))
         QShortcut(QKeySequence("F1"), self, activated=self.mostrar_ayuda)
 
+    def _plantilla_nivel(self) -> str:
+        return (
+            f"INICIAR {self.nivel_actual.escenario}\n"
+            "// Escribí tu jugada acá. Usá el botón Ayuda / Entorno para ver el escenario.\n"
+            "FIN"
+        )
+
     def seleccionar_nivel(self, nivel_id: str, ir_a_jugar: bool = True) -> None:
         self.nivel_actual = obtener_nivel(nivel_id, self.niveles)
         self.lbl_titulo_nivel.setText(f"{self.nivel_actual.nombre} · {self.nivel_actual.subtitulo}")
         self.lbl_objetivo_nivel.setText(f"Objetivo: {self.nivel_actual.pista}")
-        self.editor.setPlainText(self.nivel_actual.codigo_inicial)
+        self.editor.setPlainText(self._plantilla_nivel())
         self.editor.limpiar_errores()
         self.cancha.cargar_nivel(self.nivel_actual)
         self.lbl_accion_actual.setText("Acción 0/0 · Listo")
@@ -216,8 +228,8 @@ class VentanaPrincipal(QMainWindow):
         if ir_a_jugar:
             self.stack.setCurrentIndex(1)
 
-    def restaurar_codigo_inicial(self) -> None:
-        self.editor.setPlainText(self.nivel_actual.codigo_inicial)
+    def restaurar_plantilla(self) -> None:
+        self.editor.setPlainText(self._plantilla_nivel())
         self.editor.limpiar_errores()
         self.reiniciar_simulacion()
 
@@ -285,12 +297,27 @@ class VentanaPrincipal(QMainWindow):
             self.estado_rep = EstadoReproduccion.EXITO
             self.progreso.registrar_victoria(self.nivel_actual.id)
             self._refrescar_progreso_global()
-            self._actualizar_statusbar(f"¡ÉXITO! {resultado.motivo} — Trofeo: {self.nivel_actual.trofeo.nombre}")
-            QMessageBox.information(
-                self,
-                "¡Objetivo Cumplido!",
-                f"{resultado.motivo}\n\n🏆 Trofeo desbloqueado: {self.nivel_actual.trofeo.nombre}\n{self.nivel_actual.trofeo.descripcion}",
-            )
+
+            if self.progreso.balon_de_oro_desbloqueado:
+                audio_8bit.reproducir_festejo_balon_de_oro()
+                self.cancha.iniciar_celebracion_8bit(
+                    "balon_de_oro",
+                    "¡BALÓN DE ORO GANADO!",
+                    f"Completaste los 4 niveles • {resultado.motivo}",
+                )
+                self._actualizar_statusbar(
+                    f"¡BALÓN DE ORO DESBLOQUEADO! 4/4 niveles completados. {resultado.motivo}"
+                )
+            else:
+                audio_8bit.reproducir_festejo_nivel()
+                self.cancha.iniciar_celebracion_8bit(
+                    "nivel",
+                    "¡NIVEL COMPLETADO!",
+                    f"{resultado.motivo} • Trofeo: {self.nivel_actual.trofeo.nombre}",
+                )
+                self._actualizar_statusbar(
+                    f"¡ÉXITO! {resultado.motivo} — Trofeo: {self.nivel_actual.trofeo.nombre}"
+                )
         else:
             self.estado_rep = EstadoReproduccion.FALLO
             self._actualizar_statusbar(f"Jugada fallida: {resultado.motivo}")
@@ -306,5 +333,5 @@ class VentanaPrincipal(QMainWindow):
         self.status.showMessage(f"[{self.estado_rep.value}] Nivel: {self.nivel_actual.nombre}  |  {msg}")
 
     def mostrar_ayuda(self) -> None:
-        dlg = DialogoAyuda(self)
+        dlg = DialogoAyuda(self, self.nivel_actual)
         dlg.exec()

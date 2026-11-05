@@ -90,8 +90,8 @@ class Scanner(object):
    eofSym  = 0
 
    charSetSize = 256
-   maxT = 17
-   noSym = 17
+   maxT = 18
+   noSym = 18
    start = [
      0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
      0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
@@ -250,6 +250,8 @@ class Scanner(object):
          self.t.kind = 12
       elif lit == "REPETIR":
          self.t.kind = 13
+      elif lit == "POSICIONAR":
+         self.t.kind = 17
 
 
    def NextToken( self ):

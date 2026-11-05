@@ -11,7 +11,7 @@ class ResaltadorMessiScript(QSyntaxHighlighter):
     fmt_kw = QTextCharFormat()
     fmt_kw.setForeground(QColor("#75AADB"))
     fmt_kw.setFontWeight(QFont.Weight.Bold)
-    palabras_kw = ["INICIAR", "FIN", "VAR", "REPETIR", "MOVER", "PASE", "REMATAR"]
+    palabras_kw = ["INICIAR", "FIN", "VAR", "REPETIR", "MOVER", "PASE", "REMATAR", "POSICIONAR"]
     for kw in palabras_kw:
         self.reglas.append((QRegularExpression(rf"\b{kw}\b"), fmt_kw))
 

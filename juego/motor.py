@@ -24,6 +24,8 @@ def formatear_accion(accion: Optional[dict]) -> str:
       return f"MOVER {accion.get('direccion', '')} {accion.get('pasos', 1)}"
   if t == "PASE":
       return f"PASE {accion.get('jugador', '')}"
+  if t == "POSICIONAR":
+      return f"POSICIONAR {accion.get('jugador', '')} ({accion.get('x', 0)}, {accion.get('y', 0)})"
   return "REMATAR"
 
 def _combinar_posiciones(
@@ -100,7 +102,7 @@ def _evaluar_objetivo(
   return False, "Objetivo no reconocido."
 
 def simular(acciones: List[dict], nivel: Nivel) -> Resultado:
-  aliados = dict(nivel.inicio)
+  aliados = {"MESSI": nivel.inicio["MESSI"]}
   rivales = dict(nivel.rivales)
   poseedor: Optional[str] = nivel.pelota
   balon = (float(aliados[poseedor][0]), float(aliados[poseedor][1]))
@@ -213,6 +215,36 @@ def simular(acciones: List[dict], nivel: Nivel) -> Resultado:
 
           ultimo_pase = (pasador_actual, receptor)
           poseedor = receptor
+
+      elif tipo == "POSICIONAR":
+          jugador = acc.get("jugador", "")
+          x = int(acc.get("x", 0))
+          y = int(acc.get("y", 0))
+
+          if not (0 <= x < nivel.columnas and 0 <= y < nivel.filas):
+              motivo = f"{nombre_visible(nivel, jugador)} no puede posicionarse fuera de la cancha ({x}, {y})."
+              agregar_frame(idx, acc, "fallo", motivo)
+              return Resultado(False, motivo, frames, acciones_ejecutadas)
+
+          for riv_id, (rx, ry) in rivales.items():
+              if (x, y) == (rx, ry):
+                  motivo = f"La celda ({x}, {y}) está ocupada por {nombre_visible(nivel, riv_id)}."
+                  agregar_frame(idx, acc, "fallo", motivo)
+                  return Resultado(False, motivo, frames, acciones_ejecutadas)
+
+          for comp_id, (cx, cy) in aliados.items():
+              if comp_id != jugador and (x, y) == (cx, cy):
+                  motivo = f"La celda ({x}, {y}) está ocupada por {nombre_visible(nivel, comp_id)}."
+                  agregar_frame(idx, acc, "fallo", motivo)
+                  return Resultado(False, motivo, frames, acciones_ejecutadas)
+
+          aliados[jugador] = (x, y)
+          agregar_frame(
+              idx,
+              acc,
+              "posicionando",
+              f"{nombre_visible(nivel, jugador)} se posiciona en ({x}, {y}).",
+          )
 
       elif tipo == "REMATAR":
           origen = (float(aliados[poseedor][0]), float(aliados[poseedor][1]))

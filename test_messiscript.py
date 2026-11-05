@@ -33,6 +33,27 @@ class PruebasMessiScript(unittest.TestCase):
         self.assertTrue(r["valido"], r)
         self.assertEqual(len(r["acciones"]), 4)
 
+    def test_posicionar_genera_accion(self):
+        r = analizar("INICIAR CROACIA_2022 VAR POS_X = 25 POSICIONAR ALVAREZ POS_X 10 FIN")
+        self.assertTrue(r["valido"], r)
+        self.assertEqual(r["acciones"], [
+            {"tipo": "POSICIONAR", "jugador": "ALVAREZ", "x": 25, "y": 10},
+        ])
+
+    def test_posicionar_validaciones(self):
+        casos = [
+            ("INICIAR CROACIA_2022 POSICIONAR MESSI 10 10 FIN", "posicion inicial fija"),
+            ("INICIAR CROACIA_2022 POSICIONAR DESCONOCIDO 10 10 FIN", "no esta en el escenario"),
+            ("INICIAR CROACIA_2022 POSICIONAR ALVAREZ 30 10 FIN", "Coordenada X"),
+            ("INICIAR CROACIA_2022 POSICIONAR ALVAREZ 10 20 FIN", "Coordenada Y"),
+        ]
+        for fuente, mensaje in casos:
+            with self.subTest(mensaje=mensaje):
+                r = analizar(fuente)
+                self.assertFalse(r["valido"], r)
+                self.assertEqual(r["acciones"], [])
+                self.assertIn(mensaje, str(r["errores"]))
+
     def test_inyeccion_escenarios(self):
         fuente = "INICIAR MISMO_NIVEL PASE ALVAREZ FIN"
         self.assertFalse(analizar(fuente)["valido"])

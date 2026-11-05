@@ -163,5 +163,45 @@
     "Variable sin valor",
     "INICIAR FINAL_2022 VAR PASOS = REMATAR FIN",
     false
+  ],
+  [
+    "Posicionar con literales",
+    "INICIAR CROACIA_2022 POSICIONAR ALVAREZ 25 10 FIN",
+    true
+  ],
+  [
+    "Posicionar con variables",
+    "INICIAR CROACIA_2022 VAR POS_X = 25 VAR POS_Y = 10 POSICIONAR ALVAREZ POS_X POS_Y FIN",
+    true
+  ],
+  [
+    "Posicionar en limites",
+    "INICIAR CROACIA_2022 POSICIONAR ALVAREZ 0 0 POSICIONAR ALVAREZ 29 19 FIN",
+    true
+  ],
+  [
+    "Posicionar dentro de repeticion",
+    "INICIAR CROACIA_2022 REPETIR 2 { POSICIONAR ALVAREZ 10 10 } FIN",
+    true
+  ],
+  [
+    "Posicionar a Messi",
+    "INICIAR CROACIA_2022 POSICIONAR MESSI 10 10 FIN",
+    false
+  ],
+  [
+    "Posicionar jugador ausente",
+    "INICIAR CROACIA_2022 POSICIONAR DESCONOCIDO 10 10 FIN",
+    false
+  ],
+  [
+    "Posicionar X fuera de rango",
+    "INICIAR CROACIA_2022 POSICIONAR ALVAREZ 30 10 FIN",
+    false
+  ],
+  [
+    "Posicionar Y fuera de rango",
+    "INICIAR CROACIA_2022 POSICIONAR ALVAREZ 10 20 FIN",
+    false
   ]
 ]

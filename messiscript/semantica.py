@@ -6,6 +6,8 @@ from pathlib import Path
 MAX_PASOS = 20
 MAX_REPETICIONES = 10
 MAX_ACCIONES = 300
+MAX_X = 29
+MAX_Y = 19
 
 
 def escenarios_demo():
@@ -52,6 +54,20 @@ def validar_y_expandir(programa, escenarios=None):
             return None
         return valor
 
+    def resolver_coordenada(cantidad, minimo, maximo, contexto):
+        if cantidad["tipo"] == "numero":
+            valor = cantidad["valor"]
+        else:
+            nombre = cantidad["nombre"]
+            if nombre not in simbolos:
+                err(cantidad, f"Variable no declarada: {nombre}.")
+                return None
+            valor = simbolos[nombre]
+        if not minimo <= valor <= maximo:
+            err(cantidad, f"{contexto}: debe estar entre {minimo} y {maximo} (valor: {valor}).")
+            return None
+        return valor
+
     def recorrer(instrucciones):
         for instruccion in instrucciones:
             tipo = instruccion["tipo"]
@@ -67,6 +83,17 @@ def validar_y_expandir(programa, escenarios=None):
                     err(instruccion, "Messi no puede pasarse la pelota a si mismo.")
                 else:
                     acciones.append({"tipo": "PASE", "jugador": jugador})
+            elif tipo == "posicionar":
+                jugador = instruccion["jugador"]
+                if escenario in disponibles and jugador not in jugadores:
+                    err(instruccion, f"El jugador {jugador} no esta en el escenario {escenario}.")
+                elif jugador == "MESSI":
+                    err(instruccion, "Messi ya tiene una posicion inicial fija y no puede ser reposicionado.")
+                else:
+                    x = resolver_coordenada(instruccion["x"], 0, MAX_X, "Coordenada X")
+                    y = resolver_coordenada(instruccion["y"], 0, MAX_Y, "Coordenada Y")
+                    if x is not None and y is not None:
+                        acciones.append({"tipo": "POSICIONAR", "jugador": jugador, "x": x, "y": y})
             elif tipo == "rematar":
                 acciones.append({"tipo": "REMATAR"})
             elif tipo == "repetir":

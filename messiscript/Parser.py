@@ -171,7 +171,7 @@ class Parser( object ):
    _EOF = 0
    _identificador = 1
    _numero = 2
-   maxT = 17
+   maxT = 18
 
    T          = True
    x          = False
@@ -280,9 +280,9 @@ class Parser( object ):
          declaraciones.append(self.Declaracion())
 
       instrucciones = []
-      if self.la.kind in (5, 10, 11, 13):
+      if self.la.kind in (5, 10, 11, 13, 17):
          instrucciones.append(self.Instruccion())
-         while self.la.kind in (5, 10, 11, 13):
+         while self.la.kind in (5, 10, 11, 13, 17):
             instrucciones.append(self.Instruccion())
       else:
          self.SynErr(18)  # al menos una instruccion
@@ -312,6 +312,8 @@ class Parser( object ):
          return self.Remate()
       elif self.la.kind == 13:
          return self.Repeticion()
+      elif self.la.kind == 17:
+         return self.Posicionamiento()
       self.SynErr(18)
       return None
 
@@ -342,14 +344,22 @@ class Parser( object ):
       inicio = self._tomar(11)
       return {"tipo": "rematar", **self._ubicacion(inicio)}
 
+   def Posicionamiento(self):
+      inicio = self._tomar(17)
+      jugador = self.Jugador()
+      x = self.Cantidad()
+      y = self.Cantidad()
+      return {"tipo": "posicionar", "jugador": jugador, "x": x, "y": y,
+              **self._ubicacion(inicio)}
+
    def Repeticion(self):
       inicio = self._tomar(13)
       cantidad = self.Cantidad()
       self._tomar(15)  # {
       cuerpo = []
-      if self.la.kind in (5, 10, 11, 13):
+      if self.la.kind in (5, 10, 11, 13, 17):
          cuerpo.append(self.Instruccion())
-         while self.la.kind in (5, 10, 11, 13):
+         while self.la.kind in (5, 10, 11, 13, 17):
             cuerpo.append(self.Instruccion())
       else:
          self.SynErr(18)
@@ -381,7 +391,7 @@ class Parser( object ):
 
 
    # Sin tablas de recuperacion: solo se usan Get / Expect / SynErr.
-   set = [[True] + [False] * 17]
+   set = [[True] + [False] * 18]
 
    errorMessages = {
       0: "Se esperaba el final del archivo",
@@ -401,8 +411,9 @@ class Parser( object ):
       14: "Se esperaba =",
       15: "Se esperaba {",
       16: "Se esperaba }",
-      17: "Caracter o simbolo invalido",
-      18: "Se esperaba una instruccion (MOVER, PASE, REMATAR o REPETIR)",
+      17: "Se esperaba POSICIONAR",
+      18: "Se esperaba una instruccion (MOVER, PASE, REMATAR, REPETIR o POSICIONAR)",
       19: "Se esperaba un numero o una variable",
-      20: "Se esperaba una direccion valida"
+      20: "Se esperaba una direccion valida",
+      21: "Caracter o simbolo invalido"
    }

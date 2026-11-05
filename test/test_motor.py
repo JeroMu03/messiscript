@@ -34,6 +34,26 @@ class TestMotorEIntegracion(unittest.TestCase):
         res = self._ejecutar_codigo("CROACIA_2022")
         self.assertTrue(res.exito, res.motivo)
 
+    def test_pase_requiere_posicionar_companero(self):
+        sin_posicionar = self._ejecutar_codigo(
+            "CROACIA_2022",
+            "INICIAR CROACIA_2022\nPASE ALVAREZ\nFIN",
+        )
+        self.assertFalse(sin_posicionar.exito)
+        self.assertIn("no está en la cancha", sin_posicionar.motivo)
+
+        con_posicionar = self._ejecutar_codigo(
+            "CROACIA_2022",
+            "INICIAR CROACIA_2022\n"
+            "VAR PASOS = 2\n"
+            "POSICIONAR ALVAREZ 25 10\n"
+            "REPETIR 2 { MOVER DERECHA PASOS MOVER ARRIBA 1 }\n"
+            "PASE ALVAREZ\n"
+            "REMATAR\n"
+            "FIN",
+        )
+        self.assertTrue(con_posicionar.exito, con_posicionar.motivo)
+
     def test_final_codigo_inicial_gana(self):
         res = self._ejecutar_codigo("FINAL_2022")
         self.assertTrue(res.exito, res.motivo)

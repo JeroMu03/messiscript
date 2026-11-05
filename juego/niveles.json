@@ -5,8 +5,8 @@
     "subtitulo": "Fase de Grupos · Mundial 2022",
     "escenario": "MEXICO_2022",
     "descripcion": "Partido cerrado en Lusail. Messi recibe fuera del área y se perfila hacia la derecha para sacar un zurdazo rasante junto al palo.",
-    "codigo_inicial": "INICIAR MEXICO_2022\nMOVER DERECHA 4\nREMATAR\nFIN",
-    "pista": "Avanzá 4 celdas a la derecha para entrar en zona de remate y ejecutá REMATAR.",
+    "codigo_inicial": "INICIAR MEXICO_2022\nPOSICIONAR DI_MARIA 21 5\nMOVER DERECHA 4\nREMATAR\nFIN",
+    "pista": "Posicioná a DI_MARIA con POSICIONAR DI_MARIA 21 5 para conocer la mecánica, avanzá 4 celdas a la derecha y ejecutá REMATAR.",
     "cancha": {"columnas": 30, "filas": 20},
     "jugadores": ["MESSI", "DI_MARIA", "DE_PAUL", "LAUTARO", "ENZO_FERNANDEZ"],
     "nombres": {
@@ -50,8 +50,8 @@
     "subtitulo": "Semifinal · Mundial 2022",
     "escenario": "CROACIA_2022",
     "descripcion": "Messi arranca por la derecha marcado por Gvardiol, desborda en diagonal hacia el área y descarga el pase de gol para Julián Álvarez.",
-    "codigo_inicial": "INICIAR CROACIA_2022\nVAR PASOS = 2\nREPETIR 2 {\n    MOVER DERECHA PASOS\n    MOVER ARRIBA 1\n}\nPASE ALVAREZ\nFIN",
-    "pista": "Usá VAR y REPETIR para avanzar en diagonal esquivando a Gvardiol y asistí a ALVAREZ.",
+    "codigo_inicial": "INICIAR CROACIA_2022\nVAR PASOS = 2\nPOSICIONAR ALVAREZ 25 10\nREPETIR 2 {\n    MOVER DERECHA PASOS\n    MOVER ARRIBA 1\n}\nPASE ALVAREZ\nREMATAR\nFIN",
+    "pista": "Declará PASOS, posicioná a ALVAREZ en (25, 10), avanzá en diagonal esquivando a Gvardiol, asistí y rematá con Álvarez.",
     "cancha": {"columnas": 30, "filas": 20},
     "jugadores": ["MESSI", "ALVAREZ", "DE_PAUL", "MAC_ALLISTER", "ENZO_FERNANDEZ", "OTAMENDI"],
     "nombres": {
@@ -81,10 +81,10 @@
     "pelota": "MESSI",
     "arco": {"x": 29, "y": 8, "alto": 4},
     "objetivo": {
-      "tipo": "asistencia",
+      "tipo": "gol_con_asistencia",
       "asistente": "MESSI",
-      "receptor": "ALVAREZ",
-      "max_acciones": 10
+      "rematador": "ALVAREZ",
+      "max_acciones": 12
     },
     "trofeo": {
       "id": "finalista_mundo_2022",
@@ -98,8 +98,8 @@
     "subtitulo": "Final · Mundial 2022",
     "escenario": "FINAL_2022",
     "descripcion": "Contraataque perfecto ante Francia. Messi conduce en el medio, abre para Di María por izquierda y Fideo define frente a Lloris.",
-    "codigo_inicial": "INICIAR FINAL_2022\nMOVER DERECHA 2\nPASE DI_MARIA\nREMATAR\nFIN",
-    "pista": "Adelantate 2 celdas a la derecha, pasale la pelota a DI_MARIA y rematá al arco.",
+    "codigo_inicial": "INICIAR FINAL_2022\nPOSICIONAR DI_MARIA 24 7\nMOVER DERECHA 2\nPASE DI_MARIA\nREMATAR\nFIN",
+    "pista": "Posicioná a DI_MARIA en (24, 7), adelantate 2 celdas a la derecha, pasale la pelota y rematá con Di María.",
     "cancha": {"columnas": 30, "filas": 20},
     "jugadores": ["MESSI", "DI_MARIA", "ALVAREZ", "DE_PAUL", "MAC_ALLISTER", "ENZO_FERNANDEZ", "OTAMENDI"],
     "nombres": {
@@ -148,8 +148,8 @@
     "subtitulo": "Semifinal · Mundial 2026",
     "escenario": "INGLATERRA_2026",
     "descripcion": "Argentina pierde 1-0 hasta el minuto 85. Messi empata con un pase a Enzo y, en el 90+2, cuelga un centro para que Lautaro cabecee el gol de la clasificación.",
-    "codigo_inicial": "INICIAR INGLATERRA_2026\nVAR PASOS = 2\nMOVER DERECHA PASOS\nMOVER ARRIBA 1\nPASE LAUTARO\nREMATAR\nFIN",
-    "pista": "Llegá a la banda derecha, buscá el espacio y tirá el centro al área. Después del pase, el control pasa a Lautaro.",
+    "codigo_inicial": "INICIAR INGLATERRA_2026\nVAR PASOS = 2\nPOSICIONAR LAUTARO 27 10\nMOVER DERECHA PASOS\nMOVER ARRIBA 1\nPASE LAUTARO\nREMATAR\nFIN",
+    "pista": "Posicioná a LAUTARO en (27, 10), llegá a la banda derecha y tirá el centro al área. Después del pase, el control pasa a Lautaro.",
     "cancha": {"columnas": 30, "filas": 20},
     "jugadores": ["MESSI", "ALVAREZ", "ENZO_FERNANDEZ", "MAC_ALLISTER", "DE_PAUL", "LAUTARO", "OTAMENDI", "ROMERO"],
     "nombres": {
