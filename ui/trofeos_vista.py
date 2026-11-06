@@ -8,12 +8,14 @@ from PySide6.QtWidgets import (
     QMessageBox,
     QProgressBar,
     QPushButton,
+    QScrollArea,
     QVBoxLayout,
     QWidget,
 )
 
 from juego.modelos import Nivel
 from juego.progreso import GestorProgreso
+from .trofeos_pixel import TarjetaTrofeoPixel
 
 
 class PaginaTrofeos(QWidget):
@@ -24,7 +26,15 @@ class PaginaTrofeos(QWidget):
         self.niveles = niveles
         self.progreso = progreso
 
-        layout = QVBoxLayout(self)
+        exterior = QVBoxLayout(self)
+        exterior.setContentsMargins(0, 0, 0, 0)
+        scroll = QScrollArea()
+        scroll.setWidgetResizable(True)
+        scroll.setFrameShape(QFrame.Shape.NoFrame)
+        contenido = QWidget()
+        scroll.setWidget(contenido)
+        exterior.addWidget(scroll)
+        layout = QVBoxLayout(contenido)
         layout.setContentsMargins(24, 24, 24, 24)
         layout.setSpacing(16)
 
@@ -41,6 +51,22 @@ class PaginaTrofeos(QWidget):
         self.barra = QProgressBar()
         self.barra.setRange(0, len(niveles))
         layout.addWidget(self.barra)
+        reglas = QLabel("Medallas: Oro sin consultar Pista · Plata con pocas acciones · Bronce por completar. Se conserva tu mejor medalla por nivel.")
+        reglas.setWordWrap(True)
+        reglas.setStyleSheet("color: #94A3B8;")
+        layout.addWidget(reglas)
+
+        titulo_especiales = QLabel("COLECCIÓN DE TROFEOS · 8 BITS")
+        titulo_especiales.setStyleSheet("font-size: 12pt; font-weight: bold; color: #7DD3FC;")
+        layout.addWidget(titulo_especiales)
+        especiales = QHBoxLayout()
+        self.trofeos_especiales = {
+            "FINAL_2022": TarjetaTrofeoPixel("copa", "Copa del Mundo 2022", "Ganá la Final 2022 para desbloquearla."),
+            "INGLATERRA_2026": TarjetaTrofeoPixel("islas", "Islas Malvinas", "Ganá la semifinal de Inglaterra 2026 para desbloquearlas."),
+        }
+        for tarjeta in self.trofeos_especiales.values():
+            especiales.addWidget(tarjeta, 1)
+        layout.addLayout(especiales)
 
         self.grilla = QGridLayout()
         self.grilla.setSpacing(16)
@@ -69,9 +95,12 @@ class PaginaTrofeos(QWidget):
         self.actualizar_vitrina()
 
     def actualizar_vitrina(self) -> None:
+        for nivel_id, tarjeta in self.trofeos_especiales.items():
+            tarjeta.actualizar(self.progreso.esta_completado(nivel_id))
         while self.grilla.count():
             it = self.grilla.takeAt(0)
             if it.widget():
+                it.widget().hide()
                 it.widget().deleteLater()
 
         comp = self.progreso.cantidad_completados
@@ -96,6 +125,10 @@ class PaginaTrofeos(QWidget):
             v.addWidget(lbl_e)
             v.addWidget(lbl_t)
             v.addWidget(lbl_d)
+            lbl_medalla = QLabel(self.progreso.texto_medalla(n.id))
+            lbl_medalla.setWordWrap(True)
+            lbl_medalla.setStyleSheet("color: #7DD3FC; font-weight: bold;")
+            v.addWidget(lbl_medalla)
             self.grilla.addWidget(card, 0, idx)
 
         if self.progreso.balon_de_oro_desbloqueado:
@@ -111,7 +144,7 @@ class PaginaTrofeos(QWidget):
         resp = QMessageBox.question(
             self,
             "Borrar progreso",
-            "¿Seguro que querés reiniciar todos los trofeos y el progreso a 0/4?",
+            "¿Seguro que querés reiniciar todos los trofeos, medallas y el progreso a 0/4? También se borra el registro de pistas consultadas.",
             QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
         )
         if resp == QMessageBox.StandardButton.Yes:

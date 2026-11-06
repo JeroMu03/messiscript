@@ -115,3 +115,13 @@ python -m unittest discover -s test -v
 ---
 
 Licencia: Se mantiene `LICENCIA_COCOR.txt` y los encabezados de los archivos del generador original.
+
+
+## Ayudas, desafío y medallas
+
+- Hacé clic en una ficha de la cancha o del cajón para iluminar sus cuatro destinos válidos. En Inglaterra, seleccioná a Messi para ver la zona del centro. Al ejecutar se ocultan las zonas y los puntos.
+- Modo desafío oculta puntos, destinos y flechas de intención, deshabilita Pista y deja Ayuda solo con la sintaxis general. Cambiar de modo reinicia la cancha y conserva tu código.
+- Medallas: Oro por completar sin consultar Pista en ese nivel; Plata con Pista y una cantidad de acciones igual o menor a la meta que muestra el juego; Bronce al completar con más acciones. Las repeticiones cuentan como acciones expandidas. La mejor medalla se conserva; a igual medalla, se conserva el menor número de acciones.
+- Consultar Pista queda registrado aunque cambies de nivel o cierres la aplicación. Reiniciar progreso borra también medallas y pistas consultadas. Los progresos anteriores conservan todos sus trofeos y reciben Bronce como punto de partida.
+- Repetir jugada reproduce el último intento del nivel sin recompilar ni sumar premios. Cambiar de nivel descarta esa repetición.
+- Cuando falla una jugada, se resalta al defensor responsable y aparece un consejo debajo de la cancha.

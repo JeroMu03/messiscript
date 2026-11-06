@@ -95,6 +95,7 @@ def cargar_niveles(ruta: Optional[Path] = None) -> List[Nivel]:
               arco_alto=arco_alto,
               objetivo=objetivo,
               trofeo=trofeo,
+              tactica=dict(item.get("tactica", {})),
           )
       )
 

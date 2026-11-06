@@ -55,6 +55,7 @@ class Nivel:
   arco_alto: int
   objetivo: Objetivo
   trofeo: Trofeo
+  tactica: dict = field(default_factory=dict)
 
 @dataclass
 class Frame:
@@ -67,6 +68,11 @@ class Frame:
   rastro: List[Tuple[float, float]] = field(default_factory=list)
   estado: str = "inicial"
   mensaje: str = ""
+  flechas: List[dict] = field(default_factory=list)
+  duracion_ms: int = 120
+  altura_balon: float = 0.0
+  responsable_fallo: Optional[str] = None
+  consejo_fallo: str = ""
 
 @dataclass
 class Resultado:

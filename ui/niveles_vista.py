@@ -56,6 +56,7 @@ class PaginaNiveles(QWidget):
         while self.grilla.count():
             item = self.grilla.takeAt(0)
             if item.widget():
+                item.widget().hide()
                 item.widget().deleteLater()
 
         comp = self.progreso.cantidad_completados
@@ -92,6 +93,9 @@ class PaginaNiveles(QWidget):
             v.addWidget(lbl_nom)
             v.addWidget(lbl_desc)
             v.addWidget(lbl_trof)
+            lbl_medalla = QLabel(self.progreso.texto_medalla(n.id))
+            lbl_medalla.setStyleSheet("color: #7DD3FC;")
+            v.addWidget(lbl_medalla)
             v.addStretch()
             v.addWidget(btn)
 

@@ -6,7 +6,13 @@
     "escenario": "MEXICO_2022",
     "descripcion": "Partido cerrado en Lusail. Messi recibe fuera del área y se perfila hacia la derecha para sacar un zurdazo rasante junto al palo.",
     "codigo_inicial": "INICIAR MEXICO_2022\nPOSICIONAR DI_MARIA 21 5\nMOVER DERECHA 4\nREMATAR\nFIN",
-    "pista": "Posicioná a DI_MARIA con POSICIONAR DI_MARIA 21 5 para conocer la mecánica, avanzá 4 celdas a la derecha y ejecutá REMATAR.",
+    "pista": "DI_MARIA: zona 2×2 X=21–22, Y=4–5 para atraer a GUARDADO; después avanzá 4 celdas y REMATAR.",
+    "tactica": {
+      "jugador_clave": "DI_MARIA",
+      "marcador": "GUARDADO",
+      "zona_arrastre": [21, 4, 22, 5],
+      "desplazamiento_minimo": 3
+    },
     "cancha": {"columnas": 30, "filas": 20},
     "jugadores": ["MESSI", "DI_MARIA", "DE_PAUL", "LAUTARO", "ENZO_FERNANDEZ"],
     "nombres": {
@@ -18,7 +24,7 @@
     },
     "inicio": {
       "MESSI": [18, 10],
-      "DI_MARIA": [21, 5],
+      "DI_MARIA": [21, 8],
       "LAUTARO": [25, 8],
       "DE_PAUL": [15, 13],
       "ENZO_FERNANDEZ": [13, 10]
@@ -50,8 +56,31 @@
     "subtitulo": "Semifinal · Mundial 2022",
     "escenario": "CROACIA_2022",
     "descripcion": "Messi arranca por la derecha marcado por Gvardiol, desborda en diagonal hacia el área y descarga el pase de gol para Julián Álvarez.",
-    "codigo_inicial": "INICIAR CROACIA_2022\nVAR PASOS = 2\nPOSICIONAR ALVAREZ 25 10\nREPETIR 2 {\n    MOVER DERECHA PASOS\n    MOVER ARRIBA 1\n}\nPASE ALVAREZ\nREMATAR\nFIN",
-    "pista": "Declará PASOS, posicioná a ALVAREZ en (25, 10), avanzá en diagonal esquivando a Gvardiol, asistí y rematá con Álvarez.",
+    "codigo_inicial": "INICIAR CROACIA_2022\nVAR PASOS = 2\nPOSICIONAR MAC_ALLISTER 20 6\nPOSICIONAR ALVAREZ 25 10\nREPETIR 2 {\n    MOVER ARRIBA 1\n    MOVER DERECHA PASOS\n}\nPASE ALVAREZ\nREMATAR\nFIN",
+    "pista": "Zonas 2×2: MAC_ALLISTER X=20–21, Y=5–6; ALVAREZ X=24–25, Y=9–10. Avanzá en diagonal, asistí y rematá.",
+    "tactica": {
+      "reglas": [
+        {
+          "jugador_clave": "MAC_ALLISTER",
+          "marcador": "MODRIC",
+          "protegido": "MESSI",
+          "tipo": "arrastre",
+          "zona_arrastre": [20, 5, 21, 6],
+          "desplazamiento_minimo": 3,
+          "ejemplo": [20, 6]
+        },
+        {
+          "jugador_clave": "ALVAREZ",
+          "marcador": "LOVREN",
+          "protegido": "ALVAREZ",
+          "tipo": "desmarque",
+          "zona_arrastre": [24, 9, 25, 10],
+          "desplazamiento_minimo": 1,
+          "ejemplo": [25, 10]
+        }
+      ],
+      "receptor_habilitado": "ALVAREZ"
+    },
     "cancha": {"columnas": 30, "filas": 20},
     "jugadores": ["MESSI", "ALVAREZ", "DE_PAUL", "MAC_ALLISTER", "ENZO_FERNANDEZ", "OTAMENDI"],
     "nombres": {
@@ -64,9 +93,9 @@
     },
     "inicio": {
       "MESSI": [16, 12],
-      "ALVAREZ": [25, 10],
+      "ALVAREZ": [23, 11],
       "ENZO_FERNANDEZ": [15, 9],
-      "MAC_ALLISTER": [17, 7],
+      "MAC_ALLISTER": [18, 9],
       "DE_PAUL": [14, 14],
       "OTAMENDI": [8, 10]
     },
@@ -98,8 +127,41 @@
     "subtitulo": "Final · Mundial 2022",
     "escenario": "FINAL_2022",
     "descripcion": "Contraataque perfecto ante Francia. Messi conduce en el medio, abre para Di María por izquierda y Fideo define frente a Lloris.",
-    "codigo_inicial": "INICIAR FINAL_2022\nPOSICIONAR DI_MARIA 24 7\nMOVER DERECHA 2\nPASE DI_MARIA\nREMATAR\nFIN",
-    "pista": "Posicioná a DI_MARIA en (24, 7), adelantate 2 celdas a la derecha, pasale la pelota y rematá con Di María.",
+    "codigo_inicial": "INICIAR FINAL_2022\nPOSICIONAR MAC_ALLISTER 21 6\nPOSICIONAR ALVAREZ 24 14\nPOSICIONAR DI_MARIA 24 7\nMOVER DERECHA 2\nPASE DI_MARIA\nREMATAR\nFIN",
+    "pista": "Tres marcas: MAC_ALLISTER X=20–21/Y=5–6; ALVAREZ X=23–24/Y=14–15; DI_MARIA X=24–25/Y=6–7. Avanzá 2, asistí a DI_MARIA y rematá.",
+    "tactica": {
+      "reglas": [
+        {
+          "jugador_clave": "MAC_ALLISTER",
+          "marcador": "TCHOUAMENI",
+          "protegido": "MESSI",
+          "tipo": "arrastre",
+          "zona_arrastre": [20, 5, 21, 6],
+          "desplazamiento_minimo": 1,
+          "ejemplo": [21, 6]
+        },
+        {
+          "jugador_clave": "ALVAREZ",
+          "marcador": "KOUNDE",
+          "protegido": "MESSI",
+          "tipo": "arrastre",
+          "zona_arrastre": [23, 14, 24, 15],
+          "desplazamiento_minimo": 1,
+          "ejemplo": [24, 14]
+        },
+        {
+          "jugador_clave": "DI_MARIA",
+          "marcador": "VARANE",
+          "protegido": "DI_MARIA",
+          "tipo": "desmarque",
+          "zona_arrastre": [24, 6, 25, 7],
+          "desplazamiento_minimo": 1,
+          "ejemplo": [24, 7]
+        }
+      ],
+      "receptor_habilitado": "DI_MARIA",
+      "indicacion_final": "Después de resolver las tres marcas, avanzá con MOVER DERECHA 2, asistí con PASE DI_MARIA y definí con REMATAR."
+    },
     "cancha": {"columnas": 30, "filas": 20},
     "jugadores": ["MESSI", "DI_MARIA", "ALVAREZ", "DE_PAUL", "MAC_ALLISTER", "ENZO_FERNANDEZ", "OTAMENDI"],
     "nombres": {
@@ -113,7 +175,7 @@
     },
     "inicio": {
       "MESSI": [18, 12],
-      "DI_MARIA": [24, 7],
+      "DI_MARIA": [23, 9],
       "ALVAREZ": [22, 10],
       "MAC_ALLISTER": [19, 9],
       "ENZO_FERNANDEZ": [14, 10],
@@ -147,9 +209,25 @@
     "nombre": "Inglaterra 2026",
     "subtitulo": "Semifinal · Mundial 2026",
     "escenario": "INGLATERRA_2026",
-    "descripcion": "Argentina pierde 1-0 hasta el minuto 85. Messi empata con un pase a Enzo y, en el 90+2, cuelga un centro para que Lautaro cabecee el gol de la clasificación.",
+    "descripcion": "Messi avanza por la banda derecha y tira un centro aéreo. Lautaro se desmarca de Stones y conecta de cabeza para clasificar a la final.",
     "codigo_inicial": "INICIAR INGLATERRA_2026\nVAR PASOS = 2\nPOSICIONAR LAUTARO 27 10\nMOVER DERECHA PASOS\nMOVER ARRIBA 1\nPASE LAUTARO\nREMATAR\nFIN",
-    "pista": "Posicioná a LAUTARO en (27, 10), llegá a la banda derecha y tirá el centro al área. Después del pase, el control pasa a Lautaro.",
+    "pista": "LAUTARO: X=26–27/Y=9–10 para escapar de STONES. Messi centra desde X=24–25/Y=4–5 con PASE LAUTARO; REMATAR define de cabeza.",
+    "tactica": {
+      "reglas": [
+        {
+          "jugador_clave": "LAUTARO",
+          "marcador": "STONES",
+          "protegido": "LAUTARO",
+          "tipo": "desmarque",
+          "zona_arrastre": [26, 9, 27, 10],
+          "desplazamiento_minimo": 1,
+          "ejemplo": [27, 10]
+        }
+      ],
+      "receptor_habilitado": "LAUTARO",
+      "centro": {"pasador": "MESSI", "receptor": "LAUTARO", "zona_origen": [24, 4, 25, 5]},
+      "indicacion_final": "Messi debe llegar a la banda: X entre 24 y 25, Y entre 4 y 5. PASE LAUTARO tira un centro aéreo; REMATAR lo define de cabeza."
+    },
     "cancha": {"columnas": 30, "filas": 20},
     "jugadores": ["MESSI", "ALVAREZ", "ENZO_FERNANDEZ", "MAC_ALLISTER", "DE_PAUL", "LAUTARO", "OTAMENDI", "ROMERO"],
     "nombres": {
@@ -164,7 +242,7 @@
     },
     "inicio": {
       "MESSI": [22, 6],
-      "LAUTARO": [27, 10],
+      "LAUTARO": [24, 10],
       "ALVAREZ": [24, 14],
       "ENZO_FERNANDEZ": [18, 10],
       "MAC_ALLISTER": [16, 7],
